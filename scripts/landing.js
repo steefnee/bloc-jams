@@ -1,18 +1,30 @@
-            var animatePoints = function() {
+var pointsArray = document.getElementsByClassName('point');
 
-                var points = document.getElementsByClassName('point');
+var animatePoints = function(points){
 
-                for (var i = 0; i < points.length; i++) {
-                  var revealPoint = function(i) {  
-                    points[i].style.opacity = 1;
-                    points[i].style.transform = "scaleX(1) translateY(0)";
-                    points[i].style.msTransform = "scaleX(1) translateY(0)";
-                    points[i].style.WebkitTransform = "scameX(1) translateY(0)";
-                   };
-                   revealPoint(i);
-                }
+    for (var i = 0; i < points.length; i++) {
+      var revealPoint = function(i) {  
+        points[i].style.opacity = 1;
+        points[i].style.transform = "scaleX(1) translateY(0)";
+        points[i].style.msTransform = "scaleX(1) translateY(0)";
+        points[i].style.WebkitTransform = "scameX(1) translateY(0)";
+        };
+        revealPoint(i);
+    }
+};
 
+window.onload = function() {
+    //Automatically animate the points on a tall screen where scrolling can't trigger the animation
+    if (window.innerHeight > 950) {
+        animatePoints(pointsArray);
+    }
 
+    var sellingPoints = document.getElementsByClassName('selling-points')[0];
+    var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
+    window.addEventListener('scroll', function(event) {
+        if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
+            animatePoints(pointsArray);
+        }
+    });
 
-
-            };
+}    
