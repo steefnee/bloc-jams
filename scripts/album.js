@@ -28,6 +28,21 @@
      ]
  };
 
+   var albumCarey = {
+     name: 'Daydream',
+     artist: 'Mariah Carey',
+     label: 'Song BMG',
+     year: '1995',
+     albumArtUrl: 'assets/images/album_covers/41QBsMrhAEL._SY300_.jpg',
+     songs: [
+         { name: 'Fantasy', length: '4:03' },
+         { name: 'Underneath the Stars', length: '3:33' },
+         { name: 'One Sweet Day', length: '4:41'},
+         { name: 'Open Arms', length: '3:29' },
+         { name: 'Always By My Baby', length: '4:18'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -53,6 +68,7 @@
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
      albumImage.setAttribute('src', album.albumArtUrl);
+
  
      // #3
      albumSongList.innerHTML = '';
@@ -62,7 +78,22 @@
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].name, album.songs[i].length);
      }
  };
+
+window.onload = function() {
+    setCurrentAlbum(albumPicasso);
+    var allAlbums = [albumPicasso , albumMarconi, albumCarey];
+    var i = 1;
+
+    var albumImage = document.getElementsByClassName('album-cover-art')[0];
+    albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(allAlbums[i]);
+        i++;
+
+        if (i == allAlbums.length) {
+            i = 0;
+        }
+
+     }); 
+
+};
  
- window.onload = function() {
-     setCurrentAlbum(albumPicasso);
- };
