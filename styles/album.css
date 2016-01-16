@@ -4,6 +4,7 @@
      background-attachment: fixed;
      background-position: center center;
      background-size: cover;
+     padding-bottom: 200px;
  }
  
  .album-cover-art {
@@ -35,7 +36,7 @@
  }
 
  .album-view-song-list {
-     width: 95%;
+     width: 90%;
      margin: 1.5rem auto;
      font-weight: 300;
      font-size: 0.75em;
@@ -53,7 +54,7 @@
  }
  
  .song-item-title {
-     width: 80%;
+     width: 85%;
  }
  
  .song-item-duration {
