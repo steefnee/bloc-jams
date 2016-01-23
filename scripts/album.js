@@ -26,6 +26,22 @@ var getSongNumberCell = function(number) {
 }
 
 
+var togglePlayFromPlayerBar = function() {
+  var songNumberCell = $(this).find('.song-item-number');
+  var songNumber = parseInt(songNumberCell.attr('data-song-number'));
+  
+  if (currentSoundFile.isPaused()) {
+    songNumberCell.html(pauseButtonTemplate)
+    $('.main-controls .play-pause').html(playerBarPauseButton);
+    currentSoundFile.play();
+  }
+  else if (currentSoundFile) {
+    songNumberCell.html(pauseButtonTemplate)
+    $('.main-controls .play-pause').html(playerBarPlayButton);
+    currentSoundFile.pause();
+  }
+}
+
  var createSongRow = function(songNumber, songName, songLength) {
      songNumber = parseInt(songNumber);
      var template = 
@@ -222,10 +238,13 @@ var previousSong = function() {
 
  var $previousButton = $('.main-controls .previous');
  var $nextButton = $('.main-controls .next');
+ var $playerBar = $('.main-controls .play-pause');
+
 
  $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
+     $playerBar.click(togglePlayFromPlayerBar);
 
  });
