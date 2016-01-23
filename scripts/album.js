@@ -27,16 +27,14 @@ var getSongNumberCell = function(number) {
 
 
 var togglePlayFromPlayerBar = function() {
-  var songNumberCell = $(this).find('.song-item-number');
-  var songNumber = parseInt(songNumberCell.attr('data-song-number'));
-  
+
   if (currentSoundFile.isPaused()) {
-    songNumberCell.html(pauseButtonTemplate)
+    getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
     $('.main-controls .play-pause').html(playerBarPauseButton);
     currentSoundFile.play();
   }
   else if (currentSoundFile) {
-    songNumberCell.html(pauseButtonTemplate)
+    getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
     $('.main-controls .play-pause').html(playerBarPlayButton);
     currentSoundFile.pause();
   }
